@@ -16,7 +16,8 @@ public class BookingTest extends BookingHomePage{
     public void testing(){
         BookingHomePage bookingHomePage = new BookingHomePage();
         bookingHomePage.clickOnValuteButton().selectUSDValue().selecectDestination("Beč")
-                .dateSelect("//span[@data-date = '2025-10-27']", "//span[@data-date = '2025-11-05']");
+                .dateSelect("2025-10-28", "2025-11-05");
+
 
     }
 
