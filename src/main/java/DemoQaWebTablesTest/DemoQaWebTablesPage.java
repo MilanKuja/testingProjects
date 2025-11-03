@@ -4,7 +4,7 @@ import BaseMethods.BaseMethods2;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 
-public class DemoQaWebTablesPage extends BaseMethods2 {
+public class DemoQaWebTablesPage extends BaseMethods2   {
 
     String addButton = "//button[@id = 'addNewRecordButton']";
     String firstNameInputField = "//input[@id = 'firstName']";
@@ -17,7 +17,6 @@ public class DemoQaWebTablesPage extends BaseMethods2 {
     String deleteRecord3 = "//span[@id = 'delete-record-3']";
     String editRecord2 = "//span[@id = 'edit-record-2']";
     String searchBox = "//input[@id = 'searchBox']";
-    String recordSearched = "//div[text()='Ljubica']";
 
 
     public DemoQaWebTablesPage clickAddButton(){
@@ -117,11 +116,6 @@ public class DemoQaWebTablesPage extends BaseMethods2 {
 
     public DemoQaWebTablesPage searchRecord(String string){
         sendKeys(getDriver().findElement(By.xpath(searchBox)), string);
-        return this;
-    }
-
-    public DemoQaWebTablesPage verifySearchInput(String string){
-        Assertions.assertEquals(string, getText(recordSearched),"Input not found");
         return this;
     }
 

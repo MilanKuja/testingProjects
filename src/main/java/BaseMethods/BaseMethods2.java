@@ -1,9 +1,7 @@
 package BaseMethods;
 
 import DriverSetup.Driver;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -21,7 +19,7 @@ public class BaseMethods2 extends Driver{
 
     public void click(WebElement element){
         waitForElementToBeVisible(element);
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        waitForElementToBeClicable(element);
         element.click();
 
     }
@@ -39,13 +37,23 @@ public class BaseMethods2 extends Driver{
         action.doubleClick(element).perform();
     }
 
-    private void waitForElementToBeVisible(WebElement element){
+    public void actionClick(WebElement element) {
+        waitForElementToBeClicable(element);
+        Actions actions = new Actions(getDriver());
+        actions.click(element).perform();
+    }
+
+    public void waitForElementToBeVisible(WebElement element){
         wait.until(ExpectedConditions.visibilityOf(element));
 
     }
 
     private void waitForElementNotVisible(String xpath){
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
+    }
+
+    public void waitForElementToBeClicable(WebElement element){
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public void openUrl(String url){
@@ -107,17 +115,7 @@ public class BaseMethods2 extends Driver{
     public void verifyElementIsDisabled(String xpath){
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
         Assertions.assertFalse(getDriver().findElement(By.xpath(xpath)).isEnabled(), "Element je enabled");
-    }
 
-//    @BeforeEach
-//    public void startUp(){
-//        openUrl("https://demoqa.com/webtables");
-//    }
-
-    @AfterEach
-    public void tareDown(){
-
-        quitDriver();
     }
 
 

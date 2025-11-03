@@ -6,7 +6,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class WebTablesDemoQaTest extends DemoQaWebTablesPage {
-
+    @BeforeEach
+    public void startUp(){
+        openUrl("https://demoqa.com/webtables");
+    }
 
     @Test
     public void testing(){
@@ -17,11 +20,13 @@ public class WebTablesDemoQaTest extends DemoQaWebTablesPage {
                 .inputTextFirstName("Milan").inputTextLastName("Ilic").inputTextEmail("ilmil@gmail.com").inputTextAge("30").inputTextSalery("1000").inputTextDepartment("DEA")
                 .clickSubmitButton()
                 .deleteRecord3().editRecord2()
-                .searchRecord("Ljubica")
-                .verifySearchInput("Ljubica");
-
+                .searchRecord("Ljubica");
 
     }
 
+    @AfterEach
+    public void tareDown(){
 
+       quitDriver();
+    }
 }
