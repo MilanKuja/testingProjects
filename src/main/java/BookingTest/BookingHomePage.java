@@ -66,9 +66,10 @@ public BookingHomePage selecectDestination(String destinationNameInput){
     return this;
     }
 
-    public BookingHomePage clickOnSearch(){
+    public BookingDestinationPage clickOnSearch(){
     click(getDriver().findElement(By.xpath(searchButton)));
-    return this;
+        BookingDestinationPage BookingDestinationPage = new BookingDestinationPage();
+        return BookingDestinationPage;
     }
 
 }
