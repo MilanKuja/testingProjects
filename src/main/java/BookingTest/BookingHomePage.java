@@ -20,8 +20,9 @@ public String DestinationNameSelect = "//div[text() = 'Beč']";
 public String DateSelect = "//button[@data-testid = 'searchbox-dates-container']";
 public String startDate = "//span[@aria-label='Th 27 November 2025']";
 public String endDate = "//span[@aria-label='Su 30 November 2025']";
-
-
+public String  whoIsTravelingButton = "//button[@data-testid = 'occupancy-config']";
+public String whoIsTravelingAddButton = "//label[text()='Adults']/ancestor::div[@class='c5aae0350e']/following-sibling::div//button[@class = 'de576f5064 b46cd7aad7 e26a59bb37 c295306d66 c7a901b0e7 aaf9b6e287 dc8366caa6']";
+public String searchButton = "//button[@class = 'de576f5064 b46cd7aad7 ced67027e5 dda427e6b5 e4f9ca4b0c ca8e0b9533 cfd71fb584 a9d40b8d51']";
 
 
 public BookingHomePage clickOnValuteButton(){
@@ -52,8 +53,22 @@ public BookingHomePage selecectDestination(String destinationNameInput){
         actionClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(startDate))));
         actionClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(endDate))));
 
-
         return this;
+    }
+
+    public BookingHomePage clickOnWhoIsTraveling(){
+    actionClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(whoIsTravelingButton))));
+    return this;
+    }
+
+    public BookingHomePage addWhoIsTraveling(){
+    click(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(whoIsTravelingAddButton))));
+    return this;
+    }
+
+    public BookingHomePage clickOnSearch(){
+    click(getDriver().findElement(By.xpath(searchButton)));
+    return this;
     }
 
 }

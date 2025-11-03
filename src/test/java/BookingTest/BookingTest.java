@@ -17,7 +17,8 @@ public class BookingTest extends BookingHomePage{
     public void testing(){
         BookingHomePage bookingHomePage = new BookingHomePage();
         bookingHomePage.clickOnValuteButton().selectUSDValue().selecectDestination("Beč").
-                dateSelectClick().dateSelect();
+                dateSelectClick().dateSelect().
+                clickOnWhoIsTraveling().addWhoIsTraveling().clickOnSearch();
 
 
     }
