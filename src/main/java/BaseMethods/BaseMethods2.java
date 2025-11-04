@@ -3,6 +3,7 @@ package BaseMethods;
 import DriverSetup.Driver;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +16,7 @@ import java.util.Set;
 public class BaseMethods2 extends Driver{
 
     WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+    JavascriptExecutor js = (JavascriptExecutor) getDriver();
 
 
     public void click(WebElement element){
@@ -118,9 +120,30 @@ public class BaseMethods2 extends Driver{
 
     }
 
+    // Scroll element na sredinu ekrana
+    public void scrollToElementCenter(WebElement element) {
+        js.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'center'});", element);
+    }
 
+    // Scroll malo niže ili više (npr. scrollBy(0, 500))
+    public void scrollBy(int x, int y) {
+        js.executeScript("window.scrollBy(arguments[0], arguments[1]);", x, y);
+    }
 
+    // Scroll skroz na dno strane
+    public void scrollToBottom() {
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+    }
 
-
-
+    // Scroll na sam vrh strane
+    public void scrollToTop() {
+        js.executeScript("window.scrollTo(0, 0);");
+    }
 }
+
+
+
+
+
+
+
