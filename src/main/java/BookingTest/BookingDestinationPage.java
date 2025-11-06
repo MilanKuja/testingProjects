@@ -8,14 +8,29 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class BookingDestinationPage extends BookingHomePage {
 
     public String freeCancelationFilter = "//input[@name = 'fc=2']/ancestor::div[@data-filters-item = 'fc:fc=2']//label//span[@class = 'c850687b9b']//span[@class = 'fc70cba028 f823b234fe ca6ff50764']";
+    public String hotelsFilter = "//input[contains(@name, '204') and contains(@class, 'faadc60545')]/ancestor::div[contains(@data-filters-item, 'ht_id:ht_id') and contains(@class, '')]//label//span//span[contains(@class, 'fc70cba028')]";
+    public String freeCancelationButtonFilter = "//button[@aria-label = 'Free cancellation']";
+    public String spaFilter = "//input[@id = ':r26a:']/ancestor::div[contains(@data-filters-item , 'hotelfacility:hotelfacility')]//label//span//span[contains(@class ,'fc70cba028')]";
+    public String expandFacilitiesButton = "//div[@id='filter_group_hotelfacility_:r38:']/following-sibling::button[@data-testid='filters-group-expand-collapse']";
 
-    public BookingDestinationPage selectFilters(){
 
-        scrollToElementCenter(getDriver().findElement(By.xpath(freeCancelationFilter)));
-        actionClick(getDriver().findElement(By.xpath(freeCancelationFilter)));
+    public BookingDestinationPage selectFreeCancelation(){
+        actionClickJavaScript(freeCancelationFilter);
         return this;
     }
 
+    public BookingDestinationPage selectHotelFilter(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(freeCancelationButtonFilter)));
+        actionClickJavaScript(hotelsFilter);
+        return this;
+    }
+
+    public BookingDestinationPage selectSpaFilter(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(expandFacilitiesButton)));
+        scrollToElementCenter(getDriver().findElement(By.xpath(expandFacilitiesButton)));
+//        click(getDriver().findElement(By.xpath(expandFacilitiesButton)));
+        return this;
+    }
 
 
 }

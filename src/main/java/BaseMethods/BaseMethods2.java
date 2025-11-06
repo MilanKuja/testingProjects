@@ -13,27 +13,26 @@ import java.time.Duration;
 import java.util.Set;
 
 
-public class BaseMethods2 extends Driver{
+public class BaseMethods2 extends Driver {
 
     WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
     JavascriptExecutor js = (JavascriptExecutor) getDriver();
 
-
-    public void click(WebElement element){
-        waitForElementToBeVisible(element);
+    //Click metode
+    public void click(WebElement element) {
         waitForElementToBeClicable(element);
         element.click();
 
     }
 
-    public void rightClick(WebElement element){
+    public void rightClick(WebElement element) {
         waitForElementToBeVisible(element);
         Actions action = new Actions(getDriver());
         action.contextClick(element).perform();
 
     }
 
-    public void doubleClick(WebElement element){
+    public void doubleClick(WebElement element) {
         waitForElementToBeVisible(element);
         Actions action = new Actions(getDriver());
         action.doubleClick(element).perform();
@@ -45,81 +44,55 @@ public class BaseMethods2 extends Driver{
         actions.click(element).perform();
     }
 
-    public void waitForElementToBeVisible(WebElement element){
+    public void actionClickJavaScript(String xpath) {
+        try {
+            // 1. Sačekaj da element postoji u DOM-u
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+
+            // 2. Skroluj element u centar ekrana
+            js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+
+            // 3. Sačekaj da bude vidljiv i klikabilan
+            waitForElementToBeClicable(element);
+
+            // 4. Pokušaj normalan klik
+            actionClick(element);
+        } catch (Exception e) {
+            // 5. Fallback ako overlay sprečava klik
+            WebElement element = getDriver().findElement(By.xpath(xpath));
+            js.executeScript("arguments[0].click();", element);
+        }
+    }
+
+    //Wait metode
+    public void waitForElementToBeVisible(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
 
     }
 
-    private void waitForElementNotVisible(String xpath){
+    private void waitForElementNotVisible(String xpath) {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
     }
 
-    public void waitForElementToBeClicable(WebElement element){
+    public void waitForElementToBeClicable(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void openUrl(String url){
-        createDriver();
-        getDriver().navigate().to(url);
-    }
 
-    public void sendKeys(WebElement element, String text){
-        waitForElementToBeVisible(element);
-        element.sendKeys(text);
-    }
-
-    public void switchToNewTab(){
-        String originalTab = getDriver().getWindowHandle();
-        Set <String> allTabs = getDriver().getWindowHandles();
-        for (String tab : allTabs) {
-            if(!tab.equals(originalTab)) {
-                getDriver().switchTo().window(tab);
-                break;
-            }
-
-        }
-
-    }
-
-    public boolean isElementVisible(WebElement element){
-        boolean isVisible = true;
-        try {
-            waitForElementToBeVisible(element);
-        }
-        catch (Exception e){
-            isVisible = false;
-        }
-        return isVisible;
-    }
-
-    public boolean isElementNotVisible(String xpath){
-        boolean isNotVisible = true;
-        try {
-            waitForElementNotVisible(xpath);
-        } catch (Exception e) {
-            isNotVisible = false;
-        }
-        return isNotVisible;
-    }
-
-    public String getText(String xpath){
+    //GET METODE
+    public String getText(String xpath) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         return getDriver().findElement(By.xpath(xpath)).getText().trim();
 
     }
 
-    public String getStringAttribute(String xpath, String attribute){
+    public String getStringAttribute(String xpath, String attribute) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         return getDriver().findElement(By.xpath(xpath)).getAttribute(attribute);
     }
 
 
-    public void verifyElementIsDisabled(String xpath){
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
-        Assertions.assertFalse(getDriver().findElement(By.xpath(xpath)).isEnabled(), "Element je enabled");
-
-    }
-
+    //SCROLL METODE
     // Scroll element na sredinu ekrana
     public void scrollToElementCenter(WebElement element) {
         js.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'center'});", element);
@@ -138,6 +111,58 @@ public class BaseMethods2 extends Driver{
     // Scroll na sam vrh strane
     public void scrollToTop() {
         js.executeScript("window.scrollTo(0, 0);");
+    }
+
+    public void openUrl(String url) {
+        createDriver();
+        getDriver().navigate().to(url);
+    }
+
+    //Verify metode
+    public void verifyElementIsDisabled(String xpath) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+        Assertions.assertFalse(getDriver().findElement(By.xpath(xpath)).isEnabled(), "Element je enabled");
+
+    }
+
+    public boolean isElementVisible(WebElement element) {
+        boolean isVisible = true;
+        try {
+            waitForElementToBeVisible(element);
+        } catch (Exception e) {
+            isVisible = false;
+        }
+        return isVisible;
+    }
+
+    public boolean isElementNotVisible(String xpath) {
+        boolean isNotVisible = true;
+        try {
+            waitForElementNotVisible(xpath);
+        } catch (Exception e) {
+            isNotVisible = false;
+        }
+        return isNotVisible;
+    }
+
+    //Ostale metode
+    public void sendKeys(WebElement element, String text) {
+        waitForElementToBeVisible(element);
+        element.sendKeys(text);
+    }
+
+    public void switchToNewTab() {
+        String originalTab = getDriver().getWindowHandle();
+        Set<String> allTabs = getDriver().getWindowHandles();
+        for (String tab : allTabs) {
+            if (!tab.equals(originalTab)) {
+                getDriver().switchTo().window(tab);
+                break;
+            }
+
+        }
+
+
     }
 }
 

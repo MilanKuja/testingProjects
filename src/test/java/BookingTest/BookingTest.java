@@ -18,8 +18,8 @@ public class BookingTest extends BookingHomePage{
         BookingHomePage bookingHomePage = new BookingHomePage();
         bookingHomePage.clickOnValuteButton().selectUSDValue().selecectDestination("Beč").
                 dateSelectClick().dateSelect().
-                clickOnWhoIsTraveling().addWhoIsTraveling().clickOnSearch().
-                selectFilters();
+                clickOnWhoIsTraveling().addWhoIsTraveling().clickOnSearch()
+                .selectFreeCancelation().selectHotelFilter().selectSpaFilter();
 
 
     }
