@@ -3,7 +3,6 @@ package BookingTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class BookingTest extends BookingHomePage{
 
@@ -19,7 +18,9 @@ public class BookingTest extends BookingHomePage{
         bookingHomePage.clickOnValuteButton().selectUSDValue().selecectDestination("Beč").
                 dateSelectClick().dateSelect().
                 clickOnWhoIsTraveling().addWhoIsTraveling().clickOnSearch()
-                .selectFreeCancelation().selectHotelFilter().selectSpaFilter();
+                .selectFreeCancelation().selectHotelFilter().selectSpaFilter()
+                .moveLeftSlider().
+                moveRightSlider();
 
 
     }

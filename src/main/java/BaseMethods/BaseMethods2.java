@@ -64,6 +64,17 @@ public class BaseMethods2 extends Driver {
         }
     }
 
+    public void clickAndHoldLeftSlidar(String xpath, int leftSlider){
+        Actions action = new Actions(getDriver());
+        action.clickAndHold(getDriver().findElement(By.xpath(xpath))).moveByOffset(leftSlider, 0).release().perform();
+    }
+
+    public void clickAndHoldRightSlidar(String xpath, int rightSlider){
+        Actions action = new Actions(getDriver());
+        action.clickAndHold(getDriver().findElement(By.xpath(xpath))).moveByOffset(rightSlider, 0).release().perform();
+    }
+
+
     //Wait metode
     public void waitForElementToBeVisible(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
