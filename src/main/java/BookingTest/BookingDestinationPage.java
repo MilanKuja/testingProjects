@@ -11,7 +11,7 @@ public class BookingDestinationPage extends BookingHomePage {
     public String hotelsFilter = "//input[contains(@name, '204') and contains(@class, 'faadc60545')]/ancestor::div[contains(@data-filters-item, 'ht_id:ht_id') and contains(@class, '')]//label//span//span[contains(@class, 'fc70cba028')]";
     public String freeCancelationButtonFilter = "//button[@aria-label = 'Free cancellation']";
     public String spaFilter = "//input[@id = ':r26a:']/ancestor::div[contains(@data-filters-item , 'hotelfacility:hotelfacility')]//label//span//span[contains(@class ,'fc70cba028')]";
-    public String expandFacilitiesButton = "//div[@id='filter_group_hotelfacility_:r38:']/following-sibling::button[@data-testid='filters-group-expand-collapse']";
+    public String expandFacilitiesButton = "//button[contains(@aria-controls, 'filter_group_hotelfacility') and .//div[contains(., 'Show all 12')]]";
 
 
     public BookingDestinationPage selectFreeCancelation(){
@@ -28,7 +28,7 @@ public class BookingDestinationPage extends BookingHomePage {
     public BookingDestinationPage selectSpaFilter(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(expandFacilitiesButton)));
         scrollToElementCenter(getDriver().findElement(By.xpath(expandFacilitiesButton)));
-//        click(getDriver().findElement(By.xpath(expandFacilitiesButton)));
+        click(getDriver().findElement(By.xpath(expandFacilitiesButton)));
         return this;
     }
 
