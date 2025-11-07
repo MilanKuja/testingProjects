@@ -64,14 +64,18 @@ public class BaseMethods2 extends Driver {
         }
     }
 
-    public void clickAndHoldLeftSlidar(String xpath, int leftSlider){
-        Actions action = new Actions(getDriver());
-        action.clickAndHold(getDriver().findElement(By.xpath(xpath))).moveByOffset(leftSlider, 0).release().perform();
-    }
+    public void setSlider(String sliderHandle, int offSet){
+        Actions actions = new Actions(getDriver());
+        actions.clickAndHold(getDriver().findElement(By.xpath(sliderHandle)))
+                .moveByOffset(offSet, 0)
+                .release()
+                .perform();
 
-    public void clickAndHoldRightSlidar(String xpath, int rightSlider){
-        Actions action = new Actions(getDriver());
-        action.clickAndHold(getDriver().findElement(By.xpath(xpath))).moveByOffset(rightSlider, 0).release().perform();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -173,6 +177,32 @@ public class BaseMethods2 extends Driver {
 
         }
 
+
+    }
+
+    public void setPriceRange(String minValue, String maxValue, int min, int max) {
+
+        // postavimo minimalnu vrednost
+        js.executeScript(
+                "arguments[0].value = arguments[1];" +
+                        "arguments[0].dispatchEvent(new Event('input', { bubbles: true }));" +
+                        "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));",
+                getDriver().findElement(By.xpath(minValue)), min
+        );
+
+        // postavimo maksimalnu vrednost
+        js.executeScript(
+                "arguments[0].value = arguments[1];" +
+                        "arguments[0].dispatchEvent(new Event('input', { bubbles: true }));" +
+                        "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));",
+                getDriver().findElement(By.xpath(maxValue)), max
+        );
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 }

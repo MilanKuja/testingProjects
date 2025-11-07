@@ -10,8 +10,10 @@ public class BookingDestinationPage extends BookingHomePage {
     public String freeCancelationButtonFilter = "//button[@aria-label = 'Free cancellation']";
     public String spaFilter = "//input[contains(@aria-label, 'Spa:')]/ancestor::div[contains(@data-filters-item , 'hotelfacility:hotelfacility')]//label//span//span[contains(@class ,'fc70cba028')]";
     public String expandFacilitiesButton = "//button[contains(@aria-controls, 'filter_group_hotelfacility') and .//div[contains(., 'Show all')]]";
-    public String rightSlider = "//input[@aria-label='Max.']/following-sibling::div[contains(@class, 'fc835e6')]";
-    public String leftSlider = "//input[@aria-label = 'Min.']";
+    public String rightSlider = "//div[@data-testid='filters-group-slider']//input[@aria-label='Max.']";
+    public String leftSlider = "//div[@data-testid='filters-group-slider']//input[@aria-label='Min.']";
+    public String sliderBar = "//div[@data-testid='filters-group-slider']";
+
 
     public BookingDestinationPage selectFreeCancelation(){
         actionClickJavaScript(freeCancelationFilter);
@@ -32,17 +34,26 @@ public class BookingDestinationPage extends BookingHomePage {
         return this;
     }
 
-    public BookingDestinationPage moveLeftSlider(){
-        clickAndHoldLeftSlidar(leftSlider, 50);
+    public BookingDestinationPage adjustPriceRange(int minPrice, int maxPrice){
+        int sliderWidth = getDriver().findElement(By.xpath(sliderBar)).getSize().width;
+        int min = 150;
+        int max = 3000;
+
+        int leftOffSet = ((minPrice - min)) * sliderWidth / (max - min);
+        int rightOffset = ((max - maxPrice) * sliderWidth) / (max - min);
+
+        setSlider(leftSlider, leftOffSet);
+        setSlider(rightSlider, rightOffset);
+
         return this;
     }
 
-    public BookingDestinationPage moveRightSlider(){
-        clickAndHoldRightSlidar(rightSlider, -50);
-        return this;
+
+
+
     }
 
 
 
 
-}
+
