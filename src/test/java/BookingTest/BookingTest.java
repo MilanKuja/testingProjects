@@ -19,7 +19,7 @@ public class BookingTest extends BookingHomePage{
         bookingHomePage.clickOnValuteButton().selectUSDValue().selecectDestination("Beč").
                 dateSelectClick().dateSelect().
                 clickOnWhoIsTraveling().addWhoIsTraveling().clickOnSearch()
-                .selectFreeCancelation().selectHotelFilter().selectSpaFilter()
+                .selectFreeCancelation().selectHotelFilter().selectSpaFilter().selectAirPortShuffleFilter().selectSortByLowestPrice()
                 .adjustPriceRange(800,1200);
 
 

@@ -15,7 +15,9 @@ public class BookingDestinationPage extends BookingHomePage {
     public String leftSlider = "//div[@data-testid='filters-group-slider']//div[contains(@class,'fc') and contains(@style,'left')]";
     public String rightSlider = "(//div[@data-testid='filters-group-slider']//div[contains(@class,'fc') and contains(@style,'left')])[last()]";
     public String sliderBar = "//div[@data-testid='filters-group-slider']";
-
+    public String airPorstShuttleFilter = "//input[contains(@aria-label, 'Airport shuttle')]/ancestor::div[contains(@data-filters-item, 'hotelfacility:hotelfacility=17')]//label//span//span[contains(@class, 'fc70cba028')]";
+    public String sortByDropDown = "//button[@data-testid = 'sorters-dropdown-trigger']";
+    public String lowestPriceFilter = "//button[@data-id = 'price']";
 
     public BookingDestinationPage selectFreeCancelation(){
         actionClickJavaScript(freeCancelationFilter);
@@ -36,6 +38,20 @@ public class BookingDestinationPage extends BookingHomePage {
         return this;
     }
 
+    public BookingDestinationPage selectAirPortShuffleFilter(){
+        scrollToElementCenter(getDriver().findElement(By.xpath(airPorstShuttleFilter)));
+        actionClickJavaScript(airPorstShuttleFilter);
+        return this;
+    }
+
+    public BookingDestinationPage selectSortByLowestPrice(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sortByDropDown)));
+        click(getDriver().findElement(By.xpath(sortByDropDown)));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lowestPriceFilter)));
+        click(getDriver().findElement(By.xpath(lowestPriceFilter)));
+        return this;
+    }
+
     public BookingDestinationPage adjustPriceRange(int minPrice, int maxPrice) {
         // Scroll do slidera da bude vidljiv
         scrollToElementCenter(getDriver().findElement(By.xpath(sliderBar)));
@@ -48,7 +64,7 @@ public class BookingDestinationPage extends BookingHomePage {
         }
 
         int sliderWidth = getDriver().findElement(By.xpath(sliderBar)).getSize().width;
-        int min = 300;    // Booking price range počinje od 0
+        int min = 400;    // Booking price range počinje od 0
         int max = 3000; // realna gornja vrednost koju koristi slider
 
         int leftOffset = (int) ((double)(minPrice - min) / (max - min) * sliderWidth);
