@@ -1,6 +1,8 @@
 package BookingTest;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class BookingDestinationPage extends BookingHomePage {
@@ -10,8 +12,8 @@ public class BookingDestinationPage extends BookingHomePage {
     public String freeCancelationButtonFilter = "//button[@aria-label = 'Free cancellation']";
     public String spaFilter = "//input[contains(@aria-label, 'Spa:')]/ancestor::div[contains(@data-filters-item , 'hotelfacility:hotelfacility')]//label//span//span[contains(@class ,'fc70cba028')]";
     public String expandFacilitiesButton = "//button[contains(@aria-controls, 'filter_group_hotelfacility') and .//div[contains(., 'Show all')]]";
-    public String rightSlider = "//div[@data-testid='filters-group-slider']//input[@aria-label='Max.']";
-    public String leftSlider = "//div[@data-testid='filters-group-slider']//input[@aria-label='Min.']";
+    public String leftSlider = "//div[@data-testid='filters-group-slider']//div[contains(@class,'fc') and contains(@style,'left')]";
+    public String rightSlider = "(//div[@data-testid='filters-group-slider']//div[contains(@class,'fc') and contains(@style,'left')])[last()]";
     public String sliderBar = "//div[@data-testid='filters-group-slider']";
 
 
@@ -34,16 +36,37 @@ public class BookingDestinationPage extends BookingHomePage {
         return this;
     }
 
-    public BookingDestinationPage adjustPriceRange(int minPrice, int maxPrice){
+    public BookingDestinationPage adjustPriceRange(int minPrice, int maxPrice) {
+        // Scroll do slidera da bude vidljiv
+        scrollToElementCenter(getDriver().findElement(By.xpath(sliderBar)));
+
+        // Sačekaj malo da JS renderuje slider (Booking je spor)
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         int sliderWidth = getDriver().findElement(By.xpath(sliderBar)).getSize().width;
-        int min = 150;
-        int max = 3000;
+        int min = 300;    // Booking price range počinje od 0
+        int max = 3000; // realna gornja vrednost koju koristi slider
 
-        int leftOffSet = ((minPrice - min)) * sliderWidth / (max - min);
-        int rightOffset = ((max - maxPrice) * sliderWidth) / (max - min);
+        int leftOffset = (int) ((double)(minPrice - min) / (max - min) * sliderWidth);
+        int rightOffset = (int) -((double)(maxPrice - min) / (max - min) * sliderWidth - sliderWidth);
 
-        setSlider(leftSlider, leftOffSet);
+        // Pomeri levi slider
+        setSlider(leftSlider, leftOffset);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(rightSlider)));
+
+        // Pomeri desni slider
         setSlider(rightSlider, rightOffset);
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return this;
     }
@@ -51,7 +74,8 @@ public class BookingDestinationPage extends BookingHomePage {
 
 
 
-    }
+
+}
 
 
 

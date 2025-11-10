@@ -1,6 +1,7 @@
 package BookingTest;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ public class BookingTest extends BookingHomePage{
                 dateSelectClick().dateSelect().
                 clickOnWhoIsTraveling().addWhoIsTraveling().clickOnSearch()
                 .selectFreeCancelation().selectHotelFilter().selectSpaFilter()
-                .adjustPriceRange(700, -400);
+                .adjustPriceRange(800,1200);
 
 
 
