@@ -69,7 +69,9 @@ public class BaseMethods2 extends Driver {
         actions.clickAndHold(getDriver().findElement(By.xpath(sliderHandle)))
                 .moveByOffset(offSet, 0)
                 .release()
+                .build()
                 .perform();
+
 
         try {
             Thread.sleep(500);
@@ -77,6 +79,16 @@ public class BaseMethods2 extends Driver {
             e.printStackTrace();
         }
     }
+
+    public void dragSlider(WebElement target, WebElement source) {
+            Actions actions = new Actions(getDriver());
+            actions.dragAndDrop(source, target)
+                    .moveToElement(target)
+                    .release()
+                    .build()
+                    .perform();
+        }
+
 
 
     //Wait metode

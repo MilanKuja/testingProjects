@@ -13,7 +13,7 @@ public class BookingDestinationPage extends BookingHomePage {
     public String spaFilter = "//input[contains(@aria-label, 'Spa:')]/ancestor::div[contains(@data-filters-item , 'hotelfacility:hotelfacility')]//label//span//span[contains(@class ,'fc70cba028')]";
     public String expandFacilitiesButton = "//button[contains(@aria-controls, 'filter_group_hotelfacility') and .//div[contains(., 'Show all')]]";
     public String leftSlider = "//div[@data-testid='filters-group-slider']//div[contains(@class,'fc') and contains(@style,'left')]";
-    public String rightSlider = "(//div[@data-testid='filters-group-slider']//div[contains(@class,'fc') and contains(@style,'left')])[last()]";
+    public String rightSlider = "//input[@aria-label='Max.']/following-sibling::div[@class='fc835e65e6']";
     public String sliderBar = "//div[@data-testid='filters-group-slider']";
     public String airPorstShuttleFilter = "//input[contains(@aria-label, 'Airport shuttle')]/ancestor::div[contains(@data-filters-item, 'hotelfacility:hotelfacility=17')]//label//span//span[contains(@class, 'fc70cba028')]";
     public String sortByDropDown = "//button[@data-testid = 'sorters-dropdown-trigger']";
@@ -52,7 +52,7 @@ public class BookingDestinationPage extends BookingHomePage {
         return this;
     }
 
-    public BookingDestinationPage adjustPriceRange(int minPrice, int maxPrice) {
+    public BookingDestinationPage adjustPriceRangeLeft(int minPrice) {
         // Scroll do slidera da bude vidljiv
         scrollToElementCenter(getDriver().findElement(By.xpath(sliderBar)));
 
@@ -64,20 +64,12 @@ public class BookingDestinationPage extends BookingHomePage {
         }
 
         int sliderWidth = getDriver().findElement(By.xpath(sliderBar)).getSize().width;
-        int min = 400;    // Booking price range počinje od 0
-        int max = 3000; // realna gornja vrednost koju koristi slider
-
-        int leftOffset = (int) ((double)(minPrice - min) / (max - min) * sliderWidth);
-        int rightOffset = (int) -((double)(maxPrice - min) / (max - min) * sliderWidth - sliderWidth);
+        int minleft = 450;    // Booking price range počinje od 0
+        int maxleft = 1950; // realna gornja vrednost koju koristi slider
 
         // Pomeri levi slider
+        int leftOffset = (int) ((double)(minPrice - minleft) / (maxleft - minleft) * sliderWidth);
         setSlider(leftSlider, leftOffset);
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(rightSlider)));
-
-        // Pomeri desni slider
-        setSlider(rightSlider, rightOffset);
-
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -87,6 +79,32 @@ public class BookingDestinationPage extends BookingHomePage {
         return this;
     }
 
+    public BookingDestinationPage adjustPriceRangeRight(int maxPrice) {
+        // Scroll do slidera da bude vidljiv
+        scrollToElementCenter(getDriver().findElement(By.xpath(sliderBar)));
+
+        // Sačekaj malo da JS renderuje slider (Booking je spor)
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        int RightsliderWidth = getDriver().findElement(By.xpath(sliderBar)).getSize().width;
+        int minRight = 650;
+        int maxRight = 2000;
+
+        // Pomeri desni slider
+        int rightOffset = (int) -((double)(maxPrice - minRight) / (maxRight - minRight) * RightsliderWidth);
+        setSlider(rightSlider, rightOffset);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return this;
+    }
 
 
 

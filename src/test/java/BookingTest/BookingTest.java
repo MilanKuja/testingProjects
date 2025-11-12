@@ -20,7 +20,7 @@ public class BookingTest extends BookingHomePage{
                 dateSelectClick().dateSelect().
                 clickOnWhoIsTraveling().addWhoIsTraveling().clickOnSearch()
                 .selectFreeCancelation().selectHotelFilter().selectSpaFilter().selectAirPortShuffleFilter().selectSortByLowestPrice()
-                .adjustPriceRange(800,1200);
+                .adjustPriceRangeLeft(600).adjustPriceRangeRight(1500);
 
 
 
