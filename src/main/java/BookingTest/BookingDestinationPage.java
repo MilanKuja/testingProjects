@@ -1,8 +1,6 @@
 package BookingTest;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class BookingDestinationPage extends BookingHomePage {
@@ -17,6 +15,7 @@ public class BookingDestinationPage extends BookingHomePage {
     public String lowestPriceFilter = "//button[@data-id = 'price']";
     public String getLeftSliderMinMax = "//div[contains(@class, 'e7e')]//input[@aria-label = 'Min.']";
     public String getRightSliderMinMax = "//div[contains(@class, 'e7e')]//input[@aria-label = 'Max.']";
+    public String firstResoult = "//div[contains(@class, 'b87c397a13') and contains(text(), 'Andaz Vienna Am')]";
 
 
     public BookingDestinationPage selectFreeCancelation() {
@@ -65,6 +64,16 @@ public class BookingDestinationPage extends BookingHomePage {
         moveSliderToValue(getRightSliderMinMax, maxPrice);
 
         return this;
+
+
+    }
+
+    public BookingResoultPage selectFirstResoult(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(firstResoult)));
+        click(wait.until(ExpectedConditions.elementToBeClickable(getDriver().findElement(By.xpath(firstResoult)))));
+        switchToNewTab();
+        return new BookingResoultPage();
+
     }
 
 

@@ -2,8 +2,6 @@ package BookingTest;
 
 import BaseMethods.BaseMethods2;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -69,8 +67,7 @@ public BookingHomePage selecectDestination(String destinationNameInput){
 
     public BookingDestinationPage clickOnSearch(){
     click(getDriver().findElement(By.xpath(searchButton)));
-        BookingDestinationPage BookingDestinationPage = new BookingDestinationPage();
-        return BookingDestinationPage;
+        return new BookingDestinationPage();
     }
 
 }
