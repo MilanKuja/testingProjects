@@ -4,6 +4,7 @@ import DriverSetup.Driver;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,7 +16,7 @@ import java.util.Set;
 
 public class BaseMethods2 extends Driver {
 
-    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
     JavascriptExecutor js = (JavascriptExecutor) getDriver();
 
     //Click metode
@@ -64,7 +65,7 @@ public class BaseMethods2 extends Driver {
         }
     }
 
-    public void setSlider(String sliderHandle, int offSet){
+    public void setSlider(String sliderHandle, int offSet) {
         Actions actions = new Actions(getDriver());
         actions.clickAndHold(getDriver().findElement(By.xpath(sliderHandle)))
                 .moveByOffset(offSet, 0)
@@ -75,20 +76,37 @@ public class BaseMethods2 extends Driver {
 
         try {
             Thread.sleep(500);
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
     public void dragSlider(WebElement target, WebElement source) {
-            Actions actions = new Actions(getDriver());
-            actions.dragAndDrop(source, target)
-                    .moveToElement(target)
-                    .release()
-                    .build()
-                    .perform();
-        }
+        Actions actions = new Actions(getDriver());
+        actions.dragAndDrop(source, target)
+                .moveToElement(target)
+                .release()
+                .build()
+                .perform();
+    }
 
+    public void moveSliderToValue(String xpath, int targetValue) {
+
+        WebElement slider = getDriver().findElement(By.xpath(xpath));
+
+        int currentValue = Integer.parseInt(slider.getAttribute("value"));
+        int step = Integer.parseInt(slider.getAttribute("step"));
+
+        Keys direction = targetValue > currentValue ? Keys.ARROW_RIGHT : Keys.ARROW_LEFT;
+
+        // Pomera dokle god se value ne izjednači sa targetValue
+        while (currentValue != targetValue) {
+            slider.sendKeys(direction);
+
+            // ponovo procitaj vrednost koju je DOM ažurirao
+            currentValue = Integer.parseInt(slider.getAttribute("value"));
+        }
+    }
 
 
     //Wait metode
@@ -116,6 +134,11 @@ public class BaseMethods2 extends Driver {
     public String getStringAttribute(String xpath, String attribute) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         return getDriver().findElement(By.xpath(xpath)).getAttribute(attribute);
+    }
+
+    public int getDomAttribeute(String xpath, String atribute) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+        return Integer.parseInt(getDriver().findElement(By.xpath(xpath)).getDomAttribute((atribute)));
     }
 
 

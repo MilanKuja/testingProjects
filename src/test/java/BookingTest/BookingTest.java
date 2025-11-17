@@ -10,7 +10,7 @@ public class BookingTest extends BookingHomePage{
     @BeforeEach
     public void startUp(){
         openUrl("https://www.booking.com/");
-//        wait.until(ExpectedConditions.urlToBe("https://www.booking.com/"));
+
     }
 
     @Test
@@ -20,7 +20,7 @@ public class BookingTest extends BookingHomePage{
                 dateSelectClick().dateSelect().
                 clickOnWhoIsTraveling().addWhoIsTraveling().clickOnSearch()
                 .selectFreeCancelation().selectHotelFilter().selectSpaFilter().selectAirPortShuffleFilter().selectSortByLowestPrice()
-                .adjustPriceRangeLeft(600).adjustPriceRangeRight(1500);
+                .adjustPriceRangeLeft(800).adjustPriceRangeRight(1500);
 
 
 

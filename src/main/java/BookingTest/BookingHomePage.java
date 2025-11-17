@@ -15,6 +15,7 @@ public class BookingHomePage extends BaseMethods2 {
 public WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
 public String valuteSelectButton = "//button[@data-testid = 'header-currency-picker-trigger']";
 public String USDvaluteButton = "//span[text() = 'U.S. Dollar']";
+public String valute = "//span[@class = 'Picker_selection-text']";
 public String DestinationNameInput = "//input[@id = ':rh:']";
 public String DestinationNameSelect = "//div[text() = 'Beč']";
 public String DateSelect = "//button[@data-testid = 'searchbox-dates-container']";
@@ -31,7 +32,7 @@ public BookingHomePage clickOnValuteButton(){
 }
 
 public BookingHomePage selectUSDValue(){
-    click(getDriver().findElement(By.xpath(USDvaluteButton)));
+    click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(USDvaluteButton))));
     return this;
 }
 
