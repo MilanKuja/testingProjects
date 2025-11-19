@@ -15,11 +15,11 @@ public class BookingTest extends BookingHomePage{
     @Test
     public void testing(){
         BookingHomePage bookingHomePage = new BookingHomePage();
-        bookingHomePage.clickOnValuteButton().selectUSDValue(USDcurrency).selecectDestination("Beč").
-                dateSelectClick().dateSelect(startDate, endDate).
-                clickOnWhoIsTraveling().addWhoIsTraveling().clickOnSearch()
+        bookingHomePage.clickOn(valuteSelectButton).selectUSDValue(USDcurrency).selecectDestination("Vienna",DestinationNameSelect).
+                clickOn(DateSelect).dateSelect(startDate, endDate, DateSelect)
+                .clickOn(whoIsTravelingButton).addWhoIsTraveling(3).clickOnSearch()
                 .selectFreeCancelation().selectHotelFilter().selectSpaFilter().selectAirPortShuffleFilter().selectSortByLowestPrice()
-                .adjustPriceRangeLeft(800).adjustPriceRangeRight(1500)
+                .adjustPriceRange(800, 1500)
                 .selectFirstResoult().verifyFreeRoom();
 
 

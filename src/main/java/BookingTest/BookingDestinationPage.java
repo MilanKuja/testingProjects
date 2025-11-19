@@ -52,21 +52,23 @@ public class BookingDestinationPage extends BookingHomePage {
     }
 
 
-    public BookingDestinationPage adjustPriceRangeLeft(int minPrice) {
+    public BookingDestinationPage adjustPriceRange(int minPrice, int maxPrice) {
 
         moveSliderToValue(getLeftSliderMinMax, minPrice);
-
-        return this;
-    }
-
-    public BookingDestinationPage adjustPriceRangeRight(int maxPrice) {
 
         moveSliderToValue(getRightSliderMinMax, maxPrice);
 
         return this;
-
-
     }
+
+//    public BookingDestinationPage adjustPriceRangeRight(int maxPrice) {
+//
+//        moveSliderToValue(getRightSliderMinMax, maxPrice);
+//
+//        return this;
+//
+//
+//    }
 
     public BookingResoultPage selectFirstResoult(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(firstResoult)));

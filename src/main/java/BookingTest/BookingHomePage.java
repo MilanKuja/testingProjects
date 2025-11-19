@@ -15,19 +15,19 @@ public String valuteSelectButton = "//button[@data-testid = 'header-currency-pic
 public String USDcurrency = "//span[text() = 'U.S. Dollar']";
 public String valute = "//span[@class = 'Picker_selection-text']";
 public String DestinationNameInput = "//input[@id = ':rh:']";
-public String DestinationNameSelect = "//div[text() = 'Beč']";
+public String DestinationNameSelect = "//div[text() = 'Vienna']";
 public String DateSelect = "//button[@data-testid = 'searchbox-dates-container']";
 public String startDate = "//span[@aria-label='Th 27 November 2025']";
 public String endDate = "//span[@aria-label='Fr 5 December 2025']";
 public String whoIsTravelingButton = "//button[@data-testid = 'occupancy-config']";
-public String whoIsTravelingAddButton = "//label[text()='Adults']/ancestor::div[@class='c5aae0350e']/following-sibling::div//button[@class = 'de576f5064 b46cd7aad7 e26a59bb37 c295306d66 c7a901b0e7 aaf9b6e287 dc8366caa6']";
 public String searchButton = "//button[@class = 'de576f5064 b46cd7aad7 ced67027e5 dda427e6b5 e4f9ca4b0c ca8e0b9533 cfd71fb584 a9d40b8d51']";
-public String whoIsTrevelingBar = "//span[contains(text(), 'adults')]";
-public String addHowManyTravelers = "//label[text()='Adults']/ancestor::div[@class='c5aae0350e']/following-sibling::div//button[contains(@class, 'de576f5064 b46cd7aad7 e26a59bb37 c295306d66 c7a901b0e7 aaf9b6e287 dc8366caa6')]/preceding-sibling::span";
+public String adultsBar = "//label[text()='Adults']/ancestor::div[@class='c5aae0350e']/following-sibling::div//button[contains(@class, 'de576f5064 b46cd7aad7 e26a59bb37 c295306d66 c7a901b0e7 aaf9b6e287 dc8366caa6')]/preceding-sibling::span";
+public String plusAdultsButton = "//label[@for='group_adults']/parent::div/following-sibling::div//button[2]";
+public String minusAdultsButton = "//label[@for='group_adults']/parent::div/following-sibling::div//button[1]";
 
 
-public BookingHomePage clickOnValuteButton(){
-    click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(valuteSelectButton))));
+public BookingHomePage clickOn(String xpath){
+    click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))));
     return this;
 }
 
@@ -36,10 +36,10 @@ public BookingHomePage selectUSDValue(String currency){
     return this;
 }
 
-public BookingHomePage selecectDestination(String destinationNameInput){
+public BookingHomePage selecectDestination(String destinationNameInput, String dropDown){
 
     sendKeys(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DestinationNameInput))), destinationNameInput);
-    click(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(DestinationNameSelect))));
+    click(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(dropDown))));
     return this;
 }
 
@@ -48,9 +48,9 @@ public BookingHomePage selecectDestination(String destinationNameInput){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DateSelect)));
     return this;
 }
-    public BookingHomePage dateSelect(String dateStart, String dateEnd) {
-        actionClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(DateSelect))));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DateSelect)));
+    public BookingHomePage dateSelect(String dateStart, String dateEnd, String clickOnElement) {
+        actionClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(clickOnElement))));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(clickOnElement)));
         actionClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(dateStart))));
         actionClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(dateEnd))));
 
@@ -62,8 +62,8 @@ public BookingHomePage selecectDestination(String destinationNameInput){
         return this;
     }
 
-    public BookingHomePage addWhoIsTraveling(){
-        click(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(whoIsTravelingAddButton))));
+    public BookingHomePage addWhoIsTraveling(int value){
+        addValeuPlusMinus(adultsBar, plusAdultsButton, minusAdultsButton, value);
         return this;
     }
 

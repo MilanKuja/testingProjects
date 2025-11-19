@@ -108,6 +108,21 @@ public class BaseMethods2 extends Driver {
         }
     }
 
+    public void addValeuPlusMinus(String xpath, String plusXpath, String minusXpath, int targetValue) {
+
+        WebElement element = getDriver().findElement(By.xpath(xpath));
+        int currentValue = Integer.parseInt(element.getText().trim());
+
+        String directionXpath = targetValue > currentValue ? plusXpath : minusXpath;
+
+        while (currentValue != targetValue) {
+            getDriver().findElement(By.xpath(directionXpath)).click();
+            // ponovo procitaj vrednost koju je DOM ažurirao
+            currentValue = Integer.parseInt(getDriver().findElement(By.xpath(xpath)).getText().trim());
+            directionXpath = targetValue > currentValue ? plusXpath : minusXpath;
+        }
+    }
+
 
     //Wait metode
     public void waitForElementToBeVisible(WebElement element) {
