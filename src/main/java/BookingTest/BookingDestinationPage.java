@@ -15,7 +15,7 @@ public class BookingDestinationPage extends BookingHomePage {
     public String lowestPriceFilter = "//button[@data-id = 'price']";
     public String getLeftSliderMinMax = "//div[contains(@class, 'e7e')]//input[@aria-label = 'Min.']";
     public String getRightSliderMinMax = "//div[contains(@class, 'e7e')]//input[@aria-label = 'Max.']";
-    public String firstResoult = "//div[contains(@class, 'b87c397a13') and contains(text(), 'Andaz Vienna Am')]";
+    public String firstResoult = "//div[@data-testid = 'property-card'][1]//div[@data-testid = 'availability-cta']";
 
 
     public BookingDestinationPage selectFreeCancelation() {
