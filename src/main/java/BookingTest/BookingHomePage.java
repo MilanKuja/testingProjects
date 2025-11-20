@@ -19,6 +19,7 @@ public String Currency(String currency) {
     return String.format("//span[text() = '%s']" , currency);
 }
 
+public String PopOutCloseButton = "//button[contains (@class, 'de576f5064 b46cd7aad7 e26a59bb37 c295306d66')]";
 public String DestinationNameInput = "//input[@id = ':rh:']";
 public String DestinationNameSelect = "//div[text() = 'Vienna']";
 public String DateSelect = "//button[@data-testid = 'searchbox-dates-container']";
@@ -29,6 +30,15 @@ public String searchButton = "//button[@class = 'de576f5064 b46cd7aad7 ced67027e
 public String adultsBar = "//label[text()='Adults']/ancestor::div[@class='c5aae0350e']/following-sibling::div//button[contains(@class, 'de576f5064 b46cd7aad7 e26a59bb37 c295306d66 c7a901b0e7 aaf9b6e287 dc8366caa6')]/preceding-sibling::span";
 public String plusAdultsButton = "//label[@for='group_adults']/parent::div/following-sibling::div//button[2]";
 public String minusAdultsButton = "//label[@for='group_adults']/parent::div/following-sibling::div//button[1]";
+
+
+public BookingHomePage regulatePopOut(){
+    try {
+        click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PopOutCloseButton))));
+
+    } catch (Exception e){}
+    return this;
+}
 
 
 public BookingHomePage clickOnValuteSelectButton(){
