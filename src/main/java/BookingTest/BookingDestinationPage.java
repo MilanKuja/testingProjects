@@ -19,29 +19,46 @@ public class BookingDestinationPage extends BookingHomePage {
 
 
     public BookingDestinationPage selectFreeCancelation() {
-        actionClickJavaScript(freeCancelationFilter);
+        try {
+            actionClickJavaScript(freeCancelationFilter);
+        } catch (Exception e) {
+            System.out.println("This filter does not exist");
+        }
+
         return this;
     }
 
     public BookingDestinationPage selectHotelFilter() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(freeCancelationButtonFilter)));
-        actionClickJavaScript(hotelsFilter);
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(freeCancelationButtonFilter)));
+            actionClickJavaScript(hotelsFilter);
+        } catch (Exception e) {
+            System.out.println();
+        }
+
         return this;
     }
 
     public BookingDestinationPage selectSpaFilter() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(expandFacilitiesButton)));
-            scrollToElementCenter(getDriver().findElement(By.xpath(expandFacilitiesButton)));click(getDriver().findElement(By.xpath(expandFacilitiesButton)));
-        actionClickJavaScript(spaFilter); } catch (Exception e) {
-            System.out.println("Ne postoji ovaj filter");
+            scrollToElementCenter(getDriver().findElement(By.xpath(expandFacilitiesButton)));
+            click(getDriver().findElement(By.xpath(expandFacilitiesButton)));
+            actionClickJavaScript(spaFilter);
+        } catch (Exception e) {
+            System.out.println("This filter does not exist");
         }
         return this;
     }
 
     public BookingDestinationPage selectAirPortShuffleFilter() {
-        scrollToElementCenter(getDriver().findElement(By.xpath(airPorstShuttleFilter)));
-        actionClickJavaScript(airPorstShuttleFilter);
+        try {
+            scrollToElementCenter(getDriver().findElement(By.xpath(airPorstShuttleFilter)));
+            actionClickJavaScript(airPorstShuttleFilter);
+        } catch (Exception e) {
+            System.out.println("This filter does not exist");
+        }
+
         return this;
     }
 
@@ -64,7 +81,7 @@ public class BookingDestinationPage extends BookingHomePage {
     }
 
 
-    public BookingResoultPage selectFirstResoult(){
+    public BookingResoultPage selectFirstResoult() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(firstResoult)));
         click(wait.until(ExpectedConditions.elementToBeClickable(getDriver().findElement(By.xpath(firstResoult)))));
         switchToNewTab();

@@ -6,70 +6,70 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.Currency;
 
 public class BookingHomePage extends BaseMethods2 {
 
 
-public WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-public String valuteSelectButton = "//button[@data-testid = 'header-currency-picker-trigger']";
-public String USDcurrency = "//span[text() = 'U.S. Dollar']";
+    public WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+    public String valuteSelectButton = "//button[@data-testid = 'header-currency-picker-trigger']";
+    public String USDcurrency = "//span[text() = 'U.S. Dollar']";
+    public String PopOutCloseButton = "//button[contains (@class, 'de576f5064 b46cd7aad7 e26a59bb37 c295306d66')]";
+    public String DestinationNameInput = "//input[@id = ':rh:']";
+    public String DestinationNameSelect = "//div[text() = 'Vienna']";
+    public String DateSelect = "//button[@data-testid = 'searchbox-dates-container']";
+    public String startDate = "//span[@aria-label='Th 27 November 2025']";
+    public String endDate = "//span[@aria-label='Fr 5 December 2025']";
+    public String whoIsTravelingButton = "//button[@data-testid = 'occupancy-config']";
+    public String searchButton = "//button[@class = 'de576f5064 b46cd7aad7 ced67027e5 dda427e6b5 e4f9ca4b0c ca8e0b9533 cfd71fb584 a9d40b8d51']";
+    public String adultsBar = "//label[text()='Adults']/ancestor::div[@class='c5aae0350e']/following-sibling::div//button[contains(@class, 'de576f5064 b46cd7aad7 e26a59bb37 c295306d66 c7a901b0e7 aaf9b6e287 dc8366caa6')]/preceding-sibling::span";
+    public String plusAdultsButton = "//label[@for='group_adults']/parent::div/following-sibling::div//button[2]";
+    public String minusAdultsButton = "//label[@for='group_adults']/parent::div/following-sibling::div//button[1]";
 
-public String Currency(String currency) {
-    return String.format("//span[text() = '%s']" , currency);
-}
-public String DestinationName(String destenationName) {
-        return String.format("//div[text() = '%s']" , destenationName);
-}
+    public String Currency(String currency) {
+        return String.format("//span[text() = '%s']", currency);
+    }
 
-public String PopOutCloseButton = "//button[contains (@class, 'de576f5064 b46cd7aad7 e26a59bb37 c295306d66')]";
-public String DestinationNameInput = "//input[@id = ':rh:']";
-public String DestinationNameSelect = "//div[text() = 'Vienna']";
-public String DateSelect = "//button[@data-testid = 'searchbox-dates-container']";
-public String startDate = "//span[@aria-label='Th 27 November 2025']";
-public String endDate = "//span[@aria-label='Fr 5 December 2025']";
-public String whoIsTravelingButton = "//button[@data-testid = 'occupancy-config']";
-public String searchButton = "//button[@class = 'de576f5064 b46cd7aad7 ced67027e5 dda427e6b5 e4f9ca4b0c ca8e0b9533 cfd71fb584 a9d40b8d51']";
-public String adultsBar = "//label[text()='Adults']/ancestor::div[@class='c5aae0350e']/following-sibling::div//button[contains(@class, 'de576f5064 b46cd7aad7 e26a59bb37 c295306d66 c7a901b0e7 aaf9b6e287 dc8366caa6')]/preceding-sibling::span";
-public String plusAdultsButton = "//label[@for='group_adults']/parent::div/following-sibling::div//button[2]";
-public String minusAdultsButton = "//label[@for='group_adults']/parent::div/following-sibling::div//button[1]";
+    public String DestinationName(String destenationName) {
+        return String.format("//div[text() = '%s']", destenationName);
+    }
+
+    public BookingHomePage regulatePopOut() {
+        try {
+            click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PopOutCloseButton))));
+
+        } catch (Exception e) {
+        }
+        return this;
+    }
 
 
-public BookingHomePage regulatePopOut(){
-    try {
-        click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PopOutCloseButton))));
+    public BookingHomePage clickOnValuteSelectButton() {
+        click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(valuteSelectButton))));
+        return this;
+    }
 
-    } catch (Exception e){}
-    return this;
-}
+    public BookingHomePage selectCurrency(String currency) {
+        click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Currency(currency)))));
+        return this;
+    }
 
+    public BookingHomePage selecectDestination(String destinationNameInput) {
+        sendKeys(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DestinationNameInput))), destinationNameInput);
+        return this;
+    }
 
-public BookingHomePage clickOnValuteSelectButton(){
-    click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(valuteSelectButton))));
-    return this;
-}
-
-public BookingHomePage selectCurrency(String currency){
-    click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Currency(currency)))));
-    return this;
-}
-
-public BookingHomePage selecectDestination(String destinationNameInput){
-    sendKeys(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DestinationNameInput))), destinationNameInput);
-    return this;
-}
-
-public BookingHomePage clickDestination( String destinationName){
-    click(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(DestinationName(destinationName)))));
-    return this;
-}
+    public BookingHomePage clickDestination(String destinationName) {
+        click(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(DestinationName(destinationName)))));
+        return this;
+    }
 
 
     public BookingHomePage dateSelectClick() {
         actionClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(DateSelect))));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DateSelect)));
-    return this;
-}
+        return this;
+    }
+
     public BookingHomePage dateSelect(String dateStart, String dateEnd) {
         actionClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(DateSelect))));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DateSelect)));
@@ -79,18 +79,18 @@ public BookingHomePage clickDestination( String destinationName){
         return this;
     }
 
-    public BookingHomePage clickOnWhoIsTraveling(){
+    public BookingHomePage clickOnWhoIsTraveling() {
         actionClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(whoIsTravelingButton))));
         return this;
     }
 
-    public BookingHomePage addWhoIsTraveling(int value){
+    public BookingHomePage addWhoIsTraveling(int value) {
         addValeuPlusMinus(adultsBar, plusAdultsButton, minusAdultsButton, value);
         return this;
     }
 
-    public BookingDestinationPage clickOnSearch(){
-    click(getDriver().findElement(By.xpath(searchButton)));
+    public BookingDestinationPage clickOnSearch() {
+        click(getDriver().findElement(By.xpath(searchButton)));
         return new BookingDestinationPage();
     }
 
