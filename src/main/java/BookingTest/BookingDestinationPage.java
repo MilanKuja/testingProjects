@@ -61,14 +61,6 @@ public class BookingDestinationPage extends BookingHomePage {
         return this;
     }
 
-//    public BookingDestinationPage adjustPriceRangeRight(int maxPrice) {
-//
-//        moveSliderToValue(getRightSliderMinMax, maxPrice);
-//
-//        return this;
-//
-//
-//    }
 
     public BookingResoultPage selectFirstResoult(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(firstResoult)));

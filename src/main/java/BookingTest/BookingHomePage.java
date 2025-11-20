@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Currency;
 
 public class BookingHomePage extends BaseMethods2 {
 
@@ -13,7 +14,11 @@ public class BookingHomePage extends BaseMethods2 {
 public WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
 public String valuteSelectButton = "//button[@data-testid = 'header-currency-picker-trigger']";
 public String USDcurrency = "//span[text() = 'U.S. Dollar']";
-public String valute = "//span[@class = 'Picker_selection-text']";
+
+public String Currency(String currency) {
+    return String.format("//span[text() = '%s']" , currency);
+}
+
 public String DestinationNameInput = "//input[@id = ':rh:']";
 public String DestinationNameSelect = "//div[text() = 'Vienna']";
 public String DateSelect = "//button[@data-testid = 'searchbox-dates-container']";
@@ -26,20 +31,20 @@ public String plusAdultsButton = "//label[@for='group_adults']/parent::div/follo
 public String minusAdultsButton = "//label[@for='group_adults']/parent::div/following-sibling::div//button[1]";
 
 
-public BookingHomePage clickOn(String xpath){
-    click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))));
+public BookingHomePage clickOnValuteSelectButton(){
+    click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(valuteSelectButton))));
     return this;
 }
 
-public BookingHomePage selectUSDValue(String currency){
-    click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(currency))));
+public BookingHomePage selectCurrency(String currency){
+    click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Currency(currency)))));
     return this;
 }
 
-public BookingHomePage selecectDestination(String destinationNameInput, String dropDown){
+public BookingHomePage selecectDestination(String destinationNameInput){
 
     sendKeys(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DestinationNameInput))), destinationNameInput);
-    click(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(dropDown))));
+    click(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(DestinationNameSelect))));
     return this;
 }
 
@@ -48,9 +53,9 @@ public BookingHomePage selecectDestination(String destinationNameInput, String d
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DateSelect)));
     return this;
 }
-    public BookingHomePage dateSelect(String dateStart, String dateEnd, String clickOnElement) {
-        actionClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(clickOnElement))));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(clickOnElement)));
+    public BookingHomePage dateSelect(String dateStart, String dateEnd) {
+        actionClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(DateSelect))));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DateSelect)));
         actionClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(dateStart))));
         actionClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(dateEnd))));
 
