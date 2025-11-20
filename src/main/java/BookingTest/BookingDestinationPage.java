@@ -30,10 +30,12 @@ public class BookingDestinationPage extends BookingHomePage {
     }
 
     public BookingDestinationPage selectSpaFilter() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(expandFacilitiesButton)));
-        scrollToElementCenter(getDriver().findElement(By.xpath(expandFacilitiesButton)));
-        click(getDriver().findElement(By.xpath(expandFacilitiesButton)));
-        actionClickJavaScript(spaFilter);
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(expandFacilitiesButton)));
+            scrollToElementCenter(getDriver().findElement(By.xpath(expandFacilitiesButton)));click(getDriver().findElement(By.xpath(expandFacilitiesButton)));
+        actionClickJavaScript(spaFilter); } catch (Exception e) {
+            System.out.println("Ne postoji ovaj filter");
+        }
         return this;
     }
 

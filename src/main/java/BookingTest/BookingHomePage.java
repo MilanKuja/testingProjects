@@ -18,6 +18,9 @@ public String USDcurrency = "//span[text() = 'U.S. Dollar']";
 public String Currency(String currency) {
     return String.format("//span[text() = '%s']" , currency);
 }
+public String DestinationName(String destenationName) {
+        return String.format("//div[text() = '%s']" , destenationName);
+}
 
 public String PopOutCloseButton = "//button[contains (@class, 'de576f5064 b46cd7aad7 e26a59bb37 c295306d66')]";
 public String DestinationNameInput = "//input[@id = ':rh:']";
@@ -52,11 +55,15 @@ public BookingHomePage selectCurrency(String currency){
 }
 
 public BookingHomePage selecectDestination(String destinationNameInput){
-
     sendKeys(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DestinationNameInput))), destinationNameInput);
-    click(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(DestinationNameSelect))));
     return this;
 }
+
+public BookingHomePage clickDestination( String destinationName){
+    click(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(DestinationName(destinationName)))));
+    return this;
+}
+
 
     public BookingHomePage dateSelectClick() {
         actionClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(DateSelect))));

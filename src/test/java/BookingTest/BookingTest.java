@@ -15,7 +15,7 @@ public class BookingTest extends BookingHomePage{
     @Test
     public void testing(){
         BookingHomePage bookingHomePage = new BookingHomePage();
-        bookingHomePage.regulatePopOut().clickOnValuteSelectButton().selectCurrency("U.S. Dollar").selecectDestination("Vienna").
+        bookingHomePage.regulatePopOut().clickOnValuteSelectButton().selectCurrency("U.S. Dollar").selecectDestination("Vienna").clickDestination("Vienna").
                 dateSelectClick().dateSelect(startDate, endDate)
                 .clickOnWhoIsTraveling().addWhoIsTraveling(3).clickOnSearch()
                 .selectFreeCancelation().selectHotelFilter().selectSpaFilter().selectAirPortShuffleFilter().selectSortByLowestPrice()
