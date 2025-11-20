@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class BookingResoultPage extends BookingHomePage{
-//    public String verifyFreeRoom = "//*[contains(text(), 'Recommended for %s')]";
+    public String table = "//table[@id = 'hprt-table']";
     public String VerifyFreeRoomFor(String verifyFreeRoom) {
         return String.format("//*[contains(text(), 'Recommended for %s')]", verifyFreeRoom);
     }
@@ -16,7 +16,7 @@ public class BookingResoultPage extends BookingHomePage{
     WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
 
     public BookingResoultPage verifyFreeRoom(String numberOfPeople){
-        waitForElementToBeVisible(getDriver().findElement(By.xpath(VerifyFreeRoomFor(numberOfPeople))));
+        waitForElementToBeVisible(getDriver().findElement(By.xpath(table)));
         Assertions.assertTrue(getDriver().findElement(By.xpath(VerifyFreeRoomFor(numberOfPeople))).isDisplayed(), "There is no free rooms");
         return this;
     }
