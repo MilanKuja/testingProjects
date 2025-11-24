@@ -8,12 +8,15 @@ public class FaceBookTest extends FaceBookLogInPage {
     @BeforeEach
     public void startUp() {
         openUrl("https://www.facebook.com/");
+        getDriver().manage().window().maximize();
+
     }
 
 
     @Test
     public void testin() {
         FaceBookLogInPage faceBookLogInPage = new FaceBookLogInPage();
+        faceBookLogInPage.typeEmail("ilmilan95@gmail.com").typePassword("");
 
     }
 
