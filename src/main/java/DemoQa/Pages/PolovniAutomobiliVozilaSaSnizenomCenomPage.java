@@ -1,4 +1,4 @@
-package Pages;
+package DemoQa.Pages;
 
 import BaseMethods.BaseMethods;
 import org.junit.jupiter.api.Assertions;

@@ -1,6 +1,6 @@
 package TestingQaDemo;
 
-import DemoQaButtonsTest.DemoQaRegisterPage;
+import DemoQa.DemoQaButtonsTest.DemoQaRegisterPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

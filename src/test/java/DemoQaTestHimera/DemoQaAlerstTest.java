@@ -1,6 +1,6 @@
 package DemoQaTestHimera;
 
-import DemoQaHimera.DemoQaAlerts;
+import DemoQa.DemoQaHimera.DemoQaAlerts;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

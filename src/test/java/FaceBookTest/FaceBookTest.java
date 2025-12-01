@@ -14,7 +14,7 @@ public class FaceBookTest extends FaceBookLogInPage {
 
 
     @Test
-    public void testin() {
+    public void testing() {
         FaceBookLogInPage faceBookLogInPage = new FaceBookLogInPage();
         faceBookLogInPage.typeEmail("ilmilan95@gmail.com").typePassword("");
 

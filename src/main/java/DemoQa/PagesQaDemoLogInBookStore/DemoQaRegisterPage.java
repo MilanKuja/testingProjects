@@ -1,4 +1,4 @@
-package PagesQaDemoLogInBookStore;
+package DemoQa.PagesQaDemoLogInBookStore;
 
 import BaseMethods.BaseMethods;
 import org.openqa.selenium.By;

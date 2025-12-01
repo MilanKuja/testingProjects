@@ -1,6 +1,6 @@
 package HimeraTestiranje;
 
-import Pages.PolovniAutomobiliHomePage;
+import DemoQa.Pages.PolovniAutomobiliHomePage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

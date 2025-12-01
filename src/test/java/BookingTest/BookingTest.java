@@ -16,7 +16,7 @@ public class BookingTest extends BookingHomePage {
     @Test
     public void testing() {
         BookingHomePage bookingHomePage = new BookingHomePage();
-        bookingHomePage.clickOnValuteSelectButton().selectCurrency("U.S. Dollar").selecectDestination("Vienna").clickDestination("Vienna").
+        bookingHomePage.clickOnValuteSelectButton().selectCurrency("U.S. Dollar").selecectDestination("Prague").clickDestination("Prague").
                 dateSelectClick().dateSelect(startDate, endDate)
                 .clickOnWhoIsTraveling().addWhoIsTraveling(3).roomsNumber(1).clickOnSearch()
                 .selectFreeCancelation().selectHotelFilter().selectSpaFilter().selectAirPortShuffleFilter().selectSortByLowestPrice()

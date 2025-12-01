@@ -1,8 +1,8 @@
 package TestingQaDemo;
 
 import DriverSetup.Driver;
-import PagesQaDemoLogInBookStore.DemoQaLogInPage;
-import PagesQaDemoLogInBookStore.DemoQaRegisterPage;
+import DemoQa.PagesQaDemoLogInBookStore.DemoQaLogInPage;
+import DemoQa.PagesQaDemoLogInBookStore.DemoQaRegisterPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

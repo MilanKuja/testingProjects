@@ -1,6 +1,6 @@
 package DemoQaTestHimera;
 
-import DemoQaHimera.DemoQaNestedFrames;
+import DemoQa.DemoQaHimera.DemoQaNestedFrames;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

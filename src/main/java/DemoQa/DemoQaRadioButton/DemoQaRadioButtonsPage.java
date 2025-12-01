@@ -1,4 +1,4 @@
-package DemoQaRadioButton;
+package DemoQa.DemoQaRadioButton;
 
 import BaseMethods.BaseMethods2;
 import org.junit.jupiter.api.Assertions;

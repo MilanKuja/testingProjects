@@ -1,4 +1,4 @@
-package DemoQaHimera;
+package DemoQa.DemoQaHimera;
 
 import BaseMethods.BaseMethods2;
 import org.junit.jupiter.api.Assertions;

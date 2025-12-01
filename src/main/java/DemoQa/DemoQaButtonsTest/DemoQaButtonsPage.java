@@ -1,4 +1,4 @@
-package DemoQaButtonsTest;
+package DemoQa.DemoQaButtonsTest;
 
 import BaseMethods.BaseMethods2;
 import org.junit.jupiter.api.Assertions;
