@@ -13,12 +13,12 @@ public class BookingHomePage extends BaseMethods2 {
     public WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
     public String valuteSelectButton = "//button[@data-testid = 'header-currency-picker-trigger']";
     public String PopOutCloseButton = "//button[contains (@class, 'de576f5064 b46cd7aad7 e26a59bb37 c295306d66')]";
-    public String DestinationNameInput = "//input[@id = ':rh:']";
+    public String DestinationNameInput = "//input[@class = 'b915b8dc0b']";
     public String DateSelect = "//button[@data-testid = 'searchbox-dates-container']";
-    public String startDate = "//span[@aria-label='Th 4 December 2025']";
-    public String endDate = "//span[@aria-label='Fr 12 December 2025']";
+    public String startDate = "//span[@aria-label='Tu 7 April 2026']";
+    public String endDate = "//span[@aria-label='Su 12 April 2026']";
     public String whoIsTravelingButton = "//button[@data-testid = 'occupancy-config']";
-    public String searchButton = "//button[@class = 'de576f5064 b46cd7aad7 ced67027e5 dda427e6b5 e4f9ca4b0c ca8e0b9533 cfd71fb584 a9d40b8d51']";
+    public String searchButton = "//button[@class = 'de576f5064 b46cd7aad7 ced67027e5 dda427e6b5 f3e59d528f ca8e0b9533 cfd71fb584 a9d40b8d51']";
     public String adultsBar = "//label[text()='Adults']/ancestor::div[@class='c5aae0350e']/following-sibling::div//button[contains(@class, 'de576f5064 b46cd7aad7 e26a59bb37 c295306d66 c7a901b0e7 aaf9b6e287 dc8366caa6')]/preceding-sibling::span";
     public String plusAdultsButton = "//label[@for='group_adults']/parent::div/following-sibling::div//button[2]";
     public String minusAdultsButton = "//label[@for='group_adults']/parent::div/following-sibling::div//button[1]";

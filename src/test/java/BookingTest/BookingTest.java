@@ -20,7 +20,7 @@ public class BookingTest extends BookingHomePage {
                 dateSelectClick().dateSelect(startDate, endDate)
                 .clickOnWhoIsTraveling().addWhoIsTraveling(3).roomsNumber(1).clickOnSearch()
                 .selectFreeCancelation().selectHotelFilter().selectSpaFilter().selectAirPortShuffleFilter().selectSortByLowestPrice()
-                .adjustPriceRange(1000, 1500)
+                .adjustPriceRange(300, 700)
                 .selectFirstResoult().verifyFreeRoom("3");
 
 
